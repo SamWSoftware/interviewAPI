@@ -1,0 +1,182 @@
+[
+    {
+        "id": "ad124021-02c2-41f9-9c8e-5151a6f929ff",
+        "pk": "flight",
+        "sk": "Budapest-Saint Petersburg-1630468575341",
+        "origin": "Budapest",
+        "destination": "Saint Petersburg",
+        "departureDate": 1630468575341,
+        "passengers": 3
+    },
+    {
+        "id": "72bc3a15-492a-4e62-85c5-cf5b27f7db80",
+        "pk": "flight",
+        "sk": "London-Warsaw-1630395214143",
+        "origin": "London",
+        "destination": "Warsaw",
+        "departureDate": 1630395214143,
+        "passengers": 12
+    },
+    {
+        "id": "5f363a6e-8fa1-4049-96eb-4e85d544b3db",
+        "pk": "flight",
+        "sk": "London-Minsk-1630316864953",
+        "origin": "London",
+        "destination": "Minsk",
+        "departureDate": 1630316864953,
+        "passengers": 0
+    },
+    {
+        "id": "3d314526-ec94-461b-bc31-abb443114c0f",
+        "pk": "flight",
+        "sk": "Bucharest-Vienna-1630323877107",
+        "origin": "Bucharest",
+        "destination": "Vienna",
+        "departureDate": 1630323877107,
+        "passengers": 12
+    },
+    {
+        "id": "862d01aa-04bb-49e7-afde-de97edda7b27",
+        "pk": "flight",
+        "sk": "Barcelona-Hamburg-1630521721172",
+        "origin": "Barcelona",
+        "destination": "Hamburg",
+        "departureDate": 1630521721172,
+        "passengers": 17
+    },
+    {
+        "id": "467a77c4-07ef-4367-a62d-c8a445e5d902",
+        "pk": "flight",
+        "sk": "London-Kyiv-1630246183686",
+        "origin": "London",
+        "destination": "Kyiv",
+        "departureDate": 1630246183686,
+        "passengers": 1
+    },
+    {
+        "id": "7e07831b-38ea-49ac-809f-ec0458fcbf6a",
+        "pk": "flight",
+        "sk": "Budapest-Hamburg-1630509568027",
+        "origin": "Budapest",
+        "destination": "Hamburg",
+        "departureDate": 1630509568027,
+        "passengers": 8
+    },
+    {
+        "id": "59db710d-0f94-4aab-b961-65be8ac4828e",
+        "pk": "flight",
+        "sk": "Bucharest-Paris-1630323415014",
+        "origin": "Bucharest",
+        "destination": "Paris",
+        "departureDate": 1630323415014,
+        "passengers": 17
+    },
+    {
+        "id": "00a3b955-a7be-4758-9b6c-614c40492e10",
+        "pk": "flight",
+        "sk": "London-Paris-1630389371159",
+        "origin": "London",
+        "destination": "Paris",
+        "departureDate": 1630389371159,
+        "passengers": 7
+    },
+    {
+        "id": "c31ca23d-ae1d-4f55-80c3-8db116fbb5ab",
+        "pk": "flight",
+        "sk": "Minsk-Vienna-1630415143186",
+        "origin": "Minsk",
+        "destination": "Vienna",
+        "departureDate": 1630415143186,
+        "passengers": 17
+    },
+    {
+        "id": "1a2834b1-2480-46e4-9430-51e4f0750a18",
+        "pk": "flight",
+        "sk": "Paris-Berlin-1630429097262",
+        "origin": "Paris",
+        "destination": "Berlin",
+        "departureDate": 1630429097262,
+        "passengers": 9
+    },
+    {
+        "id": "0cd109e8-8fe6-478d-81b8-fae81c6e62e8",
+        "pk": "flight",
+        "sk": "Barcelona-Hamburg-1630182089173",
+        "origin": "Barcelona",
+        "destination": "Hamburg",
+        "departureDate": 1630182089173,
+        "passengers": 16
+    },
+    {
+        "id": "7554f599-c4d9-475a-9a3b-2ee82722d8bc",
+        "pk": "flight",
+        "sk": "Budapest-Rome-1630470229532",
+        "origin": "Budapest",
+        "destination": "Rome",
+        "departureDate": 1630470229532,
+        "passengers": 8
+    },
+    {
+        "id": "ce51a987-3fa9-402c-a7fd-b963704d51e9",
+        "pk": "flight",
+        "sk": "Budapest-Rome-1630411919096",
+        "origin": "Budapest",
+        "destination": "Rome",
+        "departureDate": 1630411919096,
+        "passengers": 3
+    },
+    {
+        "id": "b335c8cd-c9bd-4a21-8898-e1a885e2aec6",
+        "pk": "flight",
+        "sk": "Saint Petersburg-Bucharest-1630073644303",
+        "origin": "Saint Petersburg",
+        "destination": "Bucharest",
+        "departureDate": 1630073644303,
+        "passengers": 17
+    },
+    {
+        "id": "68606a16-7214-4e69-a03d-53efc1c35a49",
+        "pk": "flight",
+        "sk": "London-Budapest-1630492724990",
+        "origin": "London",
+        "destination": "Budapest",
+        "departureDate": 1630492724990,
+        "passengers": 4
+    },
+    {
+        "id": "a3f66117-1b8b-4887-bc8d-4218cdbafeec",
+        "pk": "flight",
+        "sk": "Paris-Madrid-1630516895102",
+        "origin": "Paris",
+        "destination": "Madrid",
+        "departureDate": 1630516895102,
+        "passengers": 4
+    },
+    {
+        "id": "9f05f212-44fd-4747-b482-93b8b5037331",
+        "pk": "flight",
+        "sk": "Berlin-London-1630320714019",
+        "origin": "Berlin",
+        "destination": "London",
+        "departureDate": 1630320714019,
+        "passengers": 19
+    },
+    {
+        "id": "603ceed2-fbd2-45c1-94ae-2911acfb7d2d",
+        "pk": "flight",
+        "sk": "Kyiv-Warsaw-1630496565424",
+        "origin": "Kyiv",
+        "destination": "Warsaw",
+        "departureDate": 1630496565424,
+        "passengers": 18
+    },
+    {
+        "id": "ecdac9f4-25f2-4775-98d3-a698261eab21",
+        "pk": "flight",
+        "sk": "Saint Petersburg-Saint Petersburg-1630528528980",
+        "origin": "Saint Petersburg",
+        "destination": "Saint Petersburg",
+        "departureDate": 1630528528980,
+        "passengers": 5
+    }
+]
