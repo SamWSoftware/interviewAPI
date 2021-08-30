@@ -28,12 +28,12 @@ const authorizer: Authorizer = {
 
 const functions: AWS['functions'] = {
     getFlights: {
-        handler: 'src/endpoints/getFlights/index.handler',
+        handler: 'src/functions/getFlights/index.handler',
         events: [
             {
                 http: {
                     method: 'get',
-                    path: '${self:custom.APIVersion}/flights',
+                    path: 'flights',
                     cors: corsSettings,
                     authorizer,
                 },
@@ -41,14 +41,27 @@ const functions: AWS['functions'] = {
         ],
     },
     bookFlight: {
-        handler: 'src/endpoints/bookFlight/index.handler',
+        handler: 'src/functions/bookFlight/index.handler',
         events: [
             {
                 http: {
                     method: 'post',
-                    path: '${self:custom.APIVersion}/flights/{flightID}',
+                    path: 'flights/{flightID}',
                     cors: corsSettings,
                     authorizer,
+                },
+            },
+        ],
+    },
+
+    processProductCSV: {
+        handler: 'src/functions/processProductCSV/index.handler',
+        events: [
+            {
+                s3: {
+                    bucket: '${self:custom.buckets.assetBucketName}',
+                    event: 'event: s3:ObjectCreated:*',
+                    rules: [{ prefix: 'products/' }, { suffix: '.csv' }],
                 },
             },
         ],

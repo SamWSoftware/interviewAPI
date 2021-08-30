@@ -196,6 +196,35 @@ const Dynamo = {
 
         return documentClient.update(params).promise();
     },
+
+    batchWrite: async ({ tableName, tableData }: { tableName: string; tableData: any[] }) => {
+        const formattedRequestItems = tableData.map(item => ({
+            PutRequest: {
+                Item: item,
+            },
+        }));
+
+        return batch25(formattedRequestItems, tableName);
+    },
 };
 
 export default Dynamo;
+
+const batch25 = async (requests: any, tableName: string) => {
+    let batchNo = 0;
+
+    while (requests.length > 0) {
+        batchNo += 1;
+        console.log({ batchNo });
+        const batch = requests.splice(0, 25);
+
+        const params = {
+            RequestItems: {
+                [tableName]: batch,
+            },
+        };
+
+        await documentClient.batchWrite(params).promise();
+    }
+    return;
+};

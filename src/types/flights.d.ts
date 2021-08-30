@@ -5,5 +5,7 @@ export interface Flight {
     origin: string;
     destination: string;
     departureDate: number;
-    passengers: number;
+    passengers: Passenger[];
 }
+
+export type Passenger = any;

@@ -12,6 +12,7 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
+    "csvtojson": "^2.0.10",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
