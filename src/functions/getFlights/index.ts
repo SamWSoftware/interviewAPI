@@ -4,11 +4,15 @@ import Dynamo from 'src/common/Dynamo';
 
 const handler = async (event: APIGatewayProxyEvent) => {
     try {
-        const body = JSON.parse(event.body!);
-        const { origin, destination, fromDate, toDate } = body;
+        const { origin, destination, fromDate, toDate } = event.queryStringParameters;
+        if (!origin || !destination || !fromDate || !toDate) {
+            return APIResponses._400(Error('missing query string parameter/s'));
+        }
+
         const flights = await getFlights({ origin, destination, fromDate, toDate });
         return APIResponses._200(flights);
     } catch (error) {
+        console.error(error);
         return APIResponses._500(error.message);
     }
 };
@@ -23,8 +27,8 @@ const getFlights = async ({
 }: {
     origin: string;
     destination: string;
-    fromDate: number;
-    toDate: number;
+    fromDate: string;
+    toDate: string;
 }) => {
     return Dynamo.query({
         tableName: process.env.singleTable,

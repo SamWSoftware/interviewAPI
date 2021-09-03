@@ -59,7 +59,7 @@ const functions: AWS['functions'] = {
         events: [
             {
                 s3: {
-                    bucket: '${self:custom.buckets.assetBucketName}',
+                    bucket: '${self:custom.assetBucketName}',
                     event: 'event: s3:ObjectCreated:*',
                     rules: [{ prefix: 'products/' }, { suffix: '.csv' }],
                 },

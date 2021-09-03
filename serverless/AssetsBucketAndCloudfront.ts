@@ -4,7 +4,7 @@ const AssetsBucketAndCloudfront: AWS['resources']['Resources'] = {
     AssetS3Bucket: {
         Type: 'AWS::S3::Bucket',
         Properties: {
-            BucketName: '${self:custom.buckets.assetBucketName}',
+            BucketName: '${self:custom.assetBucketName}',
             AccessControl: 'BucketOwnerFullControl',
             CorsConfiguration: {
                 CorsRules: [

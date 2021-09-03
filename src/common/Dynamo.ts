@@ -139,12 +139,16 @@ const Dynamo = {
         if (!rangeKey) {
             delete params.ExpressionAttributeValues[':rvaluemax'];
             delete params.ExpressionAttributeValues[':rvaluemin'];
-        } else if (rangeMin) {
-            params.ExpressionAttributeValues[':rvaluemin'] = { N: String(rangeMin) };
-        } else if (rangeMax) {
-            params.ExpressionAttributeValues[':rvaluemax'] = { N: String(rangeMax) };
-        } else if (rangeValue) {
-            params.ExpressionAttributeValues[':rkeyvalue'] = { S: String(rangeValue) };
+        } else {
+            if (rangeMin) {
+                params.ExpressionAttributeValues[':rvaluemin'] = { S: String(rangeMin) };
+            }
+            if (rangeMax) {
+                params.ExpressionAttributeValues[':rvaluemax'] = { S: String(rangeMax) };
+            }
+            if (rangeValue) {
+                params.ExpressionAttributeValues[':rkeyvalue'] = { S: String(rangeValue) };
+            }
         }
 
         /*

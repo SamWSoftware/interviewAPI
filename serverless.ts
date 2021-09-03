@@ -52,6 +52,7 @@ const serverlessConfiguration: AWS = {
     provider: {
         name: 'aws',
         runtime: 'nodejs14.x',
+        stage: 'dev',
         profile: '${self:custom.profile.${self:provider.stage}}',
         apiGateway: {
             minimumCompressionSize: 1024,
