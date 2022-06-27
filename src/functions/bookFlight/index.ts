@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import APIResponses from '@libs/APIResponses';
+import { formatJSONResponse } from '@libs/APIResponses';
 import Dynamo from '@libs/Dynamo';
 import { Flight, Passenger } from 'src/types/flights';
 
@@ -9,9 +9,9 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     const { flightID } = event.pathParameters;
     const { passengers } = body;
     await bookFlight({ flightID, passengers });
-    return APIResponses._200({ message: 'flight successfully booked' });
+    return formatJSONResponse({ body: { message: 'flight successfully booked' } });
   } catch (error) {
-    return APIResponses._500(error.message);
+    return formatJSONResponse({ statusCode: 500, body: error.message });
   }
 };
 
@@ -24,8 +24,7 @@ const bookFlight = async ({
 }) => {
   const flight = await Dynamo.get<Flight>({
     tableName: process.env.singleTable,
-    hashKey: 'id',
-    hashValue: flightID,
+    pkValue: flightID,
   });
   await Dynamo.write({
     data: { ...flight, passengers: [...flight.passengers, ...passengers] },

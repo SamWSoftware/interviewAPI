@@ -1,19 +1,22 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import APIResponses from '@libs/APIResponses';
+import { formatJSONResponse } from '@libs/APIResponses';
 import Dynamo from '@libs/Dynamo';
 
 export const handler = async (event: APIGatewayProxyEvent) => {
   try {
     const { origin, destination, fromDate, toDate } = event.queryStringParameters;
     if (!origin || !destination || !fromDate || !toDate) {
-      return APIResponses._400(Error('missing query string parameter/s'));
+      return formatJSONResponse({
+        statusCode: 500,
+        body: { message: 'missing query string parameters' },
+      });
     }
 
     const flights = await getFlights({ origin, destination, fromDate, toDate });
-    return APIResponses._200(flights);
+    return formatJSONResponse({ body: flights });
   } catch (error) {
     console.error(error);
-    return APIResponses._500(error.message);
+    return formatJSONResponse({ statusCode: 500, body: error.message });
   }
 };
 
@@ -31,10 +34,10 @@ const getFlights = async ({
   return Dynamo.query({
     tableName: process.env.singleTable,
     index: 'index1',
-    hashKey: 'pk',
-    hashValue: 'flight',
-    rangeKey: 'sk',
-    rangeMin: `${origin}-${destination}-${fromDate}`,
-    rangeMax: `${origin}-${destination}-${toDate}`,
+    pkKey: 'pk',
+    pkValue: 'flight',
+    skKey: 'sk',
+    skMin: `${origin}-${destination}-${fromDate}`,
+    skMax: `${origin}-${destination}-${toDate}`,
   });
 };

@@ -6,13 +6,13 @@ import AssetsBucketAndCloudfront from './serverless/AssetsBucketAndCloudfront';
 import CognitoResources from './serverless/cognitoResources';
 
 const serverlessConfiguration: AWS = {
-  service: 'slstemplate202205',
+  service: 'slstemplate20220628',
   frameworkVersion: '3',
 
   plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dynamodb-local'],
   custom: {
     tables: {
-      singleTable: '${self:provider.stage}-${self:service}-single-table',
+      singleTable: '${sls:stage}-${self:service}-single-table',
     },
     profile: {
       dev: 'dev-profile',
@@ -24,7 +24,7 @@ const serverlessConfiguration: AWS = {
       int: 'https://int.flights.com',
       prod: 'https://prod.flights.com',
     },
-    assetBucketName: '${self:provider.stage}-${self:service}-s3-assets',
+    assetBucketName: '${sls:stage}-${self:service}-s3-assets',
 
     esbuild: {
       bundle: true,
@@ -59,7 +59,8 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
-    profile: '${self:custom.profile.${self:provider.stage}}',
+    profile: '${self:custom.profile.${sls:stage}}',
+    region: 'eu-central-1',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -68,7 +69,6 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       singleTable: '${self:custom.tables.singleTable}',
     },
-    lambdaHashingVersion: '20201221',
   },
   functions,
 

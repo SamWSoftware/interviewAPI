@@ -9,7 +9,7 @@ export const formatJSONResponse = ({
   statusCode = 200,
   headers,
 }: {
-  body: string;
+  body: any;
   statusCode?: number;
   headers?: { [key: string]: string };
 }) =>
