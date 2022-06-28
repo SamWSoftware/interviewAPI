@@ -69,6 +69,16 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       singleTable: '${self:custom.tables.singleTable}',
     },
+    iamRoleStatements: [
+      {
+        Effect: 'Allow',
+        Action: 'dynamodb:*',
+        Resource: [
+          'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.tables.singleTable}',
+          'arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.tables.singleTable}/index/index1',
+        ],
+      },
+    ],
   },
   functions,
 
