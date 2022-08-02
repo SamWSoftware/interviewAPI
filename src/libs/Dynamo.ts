@@ -109,35 +109,40 @@ const Dynamo = {
   query: async <T = Item>({
     tableName,
     index,
-    pkKey,
+    pkKey = 'pk',
     pkValue,
     skKey,
     skMin,
     skValue,
     skMax,
+    skBeginsWith,
   }: {
     tableName: string;
     index: string;
 
-    pkKey: string;
+    pkKey?: string;
     pkValue: string;
     skKey?: string;
     skValue?: string;
     skMin?: number | string;
     skMax?: number | string;
+    skBeginsWith?: string;
   }) => {
-    if (skKey && !(skMin || skMax || skValue)) {
-      throw Error('Need a skMin, skMax or skValue when a skKey is provided');
+    if (skKey && !(skMin || skMax || skValue || skBeginsWith)) {
+      throw Error(
+        'Need a skMin, skMax, skBeginsWith or skValue when a skKey is provided'
+      );
     }
 
     const skminExp = skMin ? `${skKey} > :skvaluemin` : '';
     const skmaxExp = skMax ? `${skKey} < :skvaluemax` : '';
     const skEqualsExp = skValue ? `${skKey} = :skkeyvalue` : '';
+    const skBeginsWithExp = skBeginsWith ? `begins_with (${skKey}, :skBeginsWith)` : '';
 
     const skKeyExp =
       skMin && skMax
         ? `${skKey} BETWEEN :skvaluemin AND :skvaluemax`
-        : skminExp || skmaxExp || skEqualsExp;
+        : skminExp || skmaxExp || skEqualsExp || skBeginsWithExp;
 
     let params: QueryCommandInput = {
       TableName: tableName,
@@ -160,6 +165,9 @@ const Dynamo = {
       }
       if (skValue) {
         params.ExpressionAttributeValues[':skkeyvalue'] = skValue;
+      }
+      if (skBeginsWith) {
+        params.ExpressionAttributeValues[':skBeginsWith'] = skBeginsWith;
       }
     }
 
