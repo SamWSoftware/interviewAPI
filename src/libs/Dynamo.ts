@@ -117,7 +117,7 @@ const Dynamo = {
     skMax,
     skBeginsWith,
     limit,
-    startFromKey,
+    startFromRecord,
   }: {
     tableName: string;
     index: string;
@@ -130,7 +130,7 @@ const Dynamo = {
     skMax?: number | string;
     skBeginsWith?: string;
     limit?: number;
-    startFromKey?: string;
+    startFromRecord?: Record<string, string>;
   }) => {
     if (skKey && !(skMin || skMax || skValue || skBeginsWith)) {
       throw Error(
@@ -156,7 +156,7 @@ const Dynamo = {
         ':pkvalue': pkValue,
       },
       Limit: limit,
-      ExclusiveStartKey: startFromKey ? { id: startFromKey } : undefined,
+      ExclusiveStartKey: startFromRecord ? startFromRecord : undefined,
     };
 
     if (!skKey) {
