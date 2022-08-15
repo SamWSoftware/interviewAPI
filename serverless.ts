@@ -68,6 +68,7 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       singleTable: '${self:custom.tables.singleTable}',
+      region: '${self:provider.region}',
     },
     iamRoleStatements: [
       {

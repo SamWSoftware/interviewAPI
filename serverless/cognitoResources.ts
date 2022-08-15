@@ -3,6 +3,7 @@ const CognitoResources: AWS['resources']['Resources'] = {
   CognitoUserPool: {
     Type: 'AWS::Cognito::UserPool',
     Properties: {
+      UsernameAttributes: ['email'],
       AutoVerifiedAttributes: ['email'],
       Policies: {
         PasswordPolicy: {
@@ -13,17 +14,6 @@ const CognitoResources: AWS['resources']['Resources'] = {
           RequireSymbols: false,
         },
       },
-      AdminCreateUserConfig: {
-        AllowAdminCreateUserOnly: true,
-      },
-      AccountRecoverySetting: {
-        RecoveryMechanisms: [
-          {
-            Name: 'admin_only',
-            Priority: 1,
-          },
-        ],
-      },
     },
   },
 
@@ -31,15 +21,15 @@ const CognitoResources: AWS['resources']['Resources'] = {
     Type: 'AWS::Cognito::UserPoolClient',
     Properties: {
       UserPoolId: { Ref: 'CognitoUserPool' },
-      CallbackURLs: [
-        'http://localhost:3000',
-        '${self:custom.clientOrigins.${sls:stage}}',
-      ],
-      DefaultRedirectURI: '${self:custom.clientOrigins.${sls:stage}}',
+      CallbackURLs: ['http://localhost:3000'],
       SupportedIdentityProviders: ['COGNITO'],
     },
   },
 
+  /**
+   *  If you're wanting to use custom IAM roles for your users then uncomment the next section
+   * */
+  /*
   WebUserPoolClient: {
     Type: 'AWS::Cognito::UserPoolClient',
     Properties: {
@@ -51,14 +41,6 @@ const CognitoResources: AWS['resources']['Resources'] = {
         'ALLOW_REFRESH_TOKEN_AUTH',
       ],
       PreventUserExistenceErrors: 'ENABLED',
-    },
-  },
-
-  UserPoolDomain: {
-    Type: 'AWS::Cognito::UserPoolDomain',
-    Properties: {
-      Domain: 'flights-app-${sls:stage}',
-      UserPoolId: { Ref: 'CognitoUserPool' },
     },
   },
 
@@ -124,5 +106,6 @@ const CognitoResources: AWS['resources']['Resources'] = {
       ],
     },
   },
+  */
 };
 export default CognitoResources;
