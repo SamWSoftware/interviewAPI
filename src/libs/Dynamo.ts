@@ -116,6 +116,8 @@ const Dynamo = {
     skValue,
     skMax,
     skBeginsWith,
+    limit,
+    startFromKey,
   }: {
     tableName: string;
     index: string;
@@ -127,6 +129,8 @@ const Dynamo = {
     skMin?: number | string;
     skMax?: number | string;
     skBeginsWith?: string;
+    limit?: number;
+    startFromKey?: string;
   }) => {
     if (skKey && !(skMin || skMax || skValue || skBeginsWith)) {
       throw Error(
@@ -151,6 +155,8 @@ const Dynamo = {
       ExpressionAttributeValues: {
         ':pkvalue': pkValue,
       },
+      Limit: limit,
+      ExclusiveStartKey: startFromKey ? { id: startFromKey } : undefined,
     };
 
     if (!skKey) {
