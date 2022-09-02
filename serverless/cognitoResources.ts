@@ -3,6 +3,7 @@ const CognitoResources: AWS['resources']['Resources'] = {
   CognitoUserPool: {
     Type: 'AWS::Cognito::UserPool',
     Properties: {
+      UserPoolName: '${sls:stage}-${self:service}-user-pool',
       UsernameAttributes: ['email'],
       AutoVerifiedAttributes: ['email'],
       Policies: {
